@@ -1,0 +1,23 @@
+a = selected("Sound")
+b = To LPC (autocorrelation): 16, 0.025, 0.005, 50
+c = Down to Matrix (lpc)
+Transpose
+max = Get maximum
+min = Get minimum
+Formula: "(self-(min))/(max-(min))"
+d = To TableOfReal
+
+form User's input
+positive category 1
+endform
+
+rows = Get number of rows
+for i to  rows
+Set row label (index): i, "'category'"
+endfor
+To PatternList and Categories: 0, 0, 0, 0
+
+select b
+plus c
+plus d
+Remove
