@@ -1,0 +1,31 @@
+Create Poisson process: "poisson", 0, 1, 10
+To Matrix
+Transpose
+To TableOfReal
+To PatternList and Categories: 0, 0, 0, 0
+selectObject: "PatternList poisson_transposed"
+To Categories (cluster): 4, 1e-007, 1000
+selectObject: "PatternList poisson_transposed"
+plusObject: "Categories Output"
+To FFNet: 20, 20
+selectObject: "Categories Output"
+plusObject: "FFNet 1-20-20-4"
+selectObject: "PatternList poisson_transposed"
+plusObject: "Categories Output"
+plusObject: "FFNet 1-20-20-4"
+Learn: 100, 1e-007, "Minimum-squared-error"
+selectObject: "FFNet 1-20-20-4"
+selectObject: "PatternList poisson_transposed"
+plusObject: "FFNet 1-20-20-4"
+To ActivationList: 1
+To Matrix
+To TableOfReal
+Extract column ranges: "1"
+To Matrix
+Transpose
+To PointProcess
+To Sound (pulse train): 44100, 1, 0.05, 2000
+selectObject: "Sound drums"
+plusObject: "Sound 1-20-20-4_poisson_transposed_cols_transposed"
+Convolve: "peak 0.99", "zero"
+Play
