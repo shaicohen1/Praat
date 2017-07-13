@@ -1,19 +1,18 @@
-a = selected("Sound")
+s1 = selected("Sound",1)
+s2 = selected("Sound",2)
+select s1
+
 b = To LPC (autocorrelation): 16, 0.025, 0.005, 50
 c = Down to Matrix (lpc)
 Transpose
 max = Get maximum
 min = Get minimum
-Formula: "(self-(min))/(max-(min))"
-d = To TableOfReal
-
-form User's input
-positive category 1
-endform
+m = Formula: "(self-(min))/(max-(min))"
+d =To TableOfReal
 
 rows = Get number of rows
 for i to  rows
-Set row label (index): i, "'category'"
+Set row label (index): i, "1"
 endfor
 To PatternList and Categories: 0, 0, 0, 0
 
@@ -21,3 +20,35 @@ select b
 plus c
 plus d
 Remove
+
+select s2
+f = To LPC (autocorrelation): 16, 0.025, 0.005, 50
+g = Down to Matrix (lpc)
+Transpose
+max = Get maximum
+min = Get minimum
+n =Formula: "(self-(min))/(max-(min))"
+h = To TableOfReal
+
+rows = Get number of rows
+for i to  rows
+Set row label (index): i, "2"
+endfor
+To PatternList and Categories: 0, 0, 0, 0
+
+select f
+plus g
+plus h
+Remove
+
+select m
+plus n
+
+Merge (append rows)
+To PatternList: 1
+
+
+
+
+
+
