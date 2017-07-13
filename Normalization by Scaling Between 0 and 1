@@ -1,0 +1,3 @@
+max = Get maximum
+min = Get minimum
+Formula: "(self-(min))/(max-(min))"
